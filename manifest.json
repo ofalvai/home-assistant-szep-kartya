@@ -1,0 +1,11 @@
+{
+  "domain": "szep_kartya",
+  "name": "SZÉP Kártya",
+  "documentation": "",
+  "dependencies": [],
+  "codeowners": [],
+  "requirements": [
+    "beautifulsoup4",
+    "requests"
+  ]
+}
