@@ -8,7 +8,7 @@ The state of the sensor is the sum of all sub-balances, but each sub-balance is 
 
 ## Installation
 
-1. Copy the folder `szep_kartya` to `custom_components` inside your Home Assistant config folder.
+1. Copy the folder `szep_kartya` to `custom_components inside your Home Assistant config folder.
 2. Restart Home Assistant (this installs the component's dependencies)
 3. Add your config to `configuration.yaml` (see options below)
 4. Restart Home Assistant again

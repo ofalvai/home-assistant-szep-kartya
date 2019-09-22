@@ -1,7 +1,7 @@
 {
   "domain": "szep_kartya",
   "name": "SZÉP Kártya",
-  "documentation": "",
+  "documentation": "https://github.com/ofalvai/home-assistant-szep-kartya",
   "dependencies": [],
   "codeowners": [],
   "requirements": [
