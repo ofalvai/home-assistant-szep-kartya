@@ -23,7 +23,7 @@ sensor:
     name: SZÉP Kártya
 ```
 
-`card_number: The last 8 digits of the card (after the `61013242` prefix)
+`card_number`: The last 8 digits of the card (after the `61013242` prefix)
 
 `card_code`: "Telekód" (by default the last 3 digits of card number)
 
