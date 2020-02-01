@@ -105,7 +105,7 @@ class SzepKartyaSensor(Entity):
         self.session_id = response_html.cookies['PHPSESSID']
 
     def fetch_balance(self):
-        request_body = f's_azonosito_k={self.card_number}&s_telekod_k={self.card_code}&ajax_token={self.token}'
+        request_body = f's_azonosito_k={self.card_number}&s_telekod_k={self.card_code}&ajax_token={self.token}&s_captcha='
         cookies = dict(PHPSESSID=self.session_id)
         headers = {
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
