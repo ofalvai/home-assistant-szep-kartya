@@ -21,6 +21,8 @@ sensor:
     card_number: !secret card_number
     card_code: !secret card_code
     name: SZÉP Kártya
+    scan_interval:
+      hours: 4
 ```
 
 `card_number`: The last 8 digits of the card (after the `61013242` prefix)
@@ -28,3 +30,5 @@ sensor:
 `card_code`: "Telekód" (by default the last 3 digits of card number)
 
 `name` (optional): Friendly name of the sensor
+
+`scan_interval`: The API requires captcha if it's polled too frequently. Updating every few hours (instead of the default 30 seconds) seems to be OK though.
