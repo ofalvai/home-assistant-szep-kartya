@@ -1,3 +1,4 @@
+import logging
 from homeassistant.helpers.entity import Entity
 import voluptuous as vol
 import homeassistant.helpers.config_validation as cv
@@ -8,6 +9,8 @@ import requests
 from bs4 import BeautifulSoup as bs
 import re
 import json
+
+_LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'szep_kartya'
 
@@ -113,9 +116,12 @@ class SzepKartyaSensor(Entity):
         response_api = requests.post(URL_API, headers=headers, data=request_body, cookies=cookies)
 
         response_json = json.loads(response_api.text)
-        self.balance_vendeglatas = parse_balance(response_json[1]['szamla_osszeg7'])
-        self.balance_szabadido = parse_balance(response_json[1]['szamla_osszeg8'])
-        self.balance_szallas = parse_balance(response_json[1]['szamla_osszeg9'])
+        if response_json[0] == 'RC':
+            _LOGGER.error('Captcha protection kicked in (too many requests)')
+        else:
+            self.balance_vendeglatas = parse_balance(response_json[1]['szamla_osszeg7'])
+            self.balance_szabadido = parse_balance(response_json[1]['szamla_osszeg8'])
+            self.balance_szallas = parse_balance(response_json[1]['szamla_osszeg9'])
 
 
 def parse_balance(input_string: str) -> int:
