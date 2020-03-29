@@ -25,9 +25,10 @@ sensor:
       hours: 4
 ```
 
-`card_number`: The last 8 digits of the card (after the `61013242` prefix)
+`card_number`: The last 8 digits of the card (after the `61013242` prefix). Make sure to represent the number as string to avoid removing zeroes from the beginning.
 
-`card_code`: "Telekód" (by default the last 3 digits of card number)
+`card_code`: "Telekód" (by default the last 3 digits of card number). Make sure to represent the number as string to avoid removing zeroes from the beginning.
+
 
 `name` (optional): Friendly name of the sensor
 
