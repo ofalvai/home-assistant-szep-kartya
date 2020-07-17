@@ -1,6 +1,6 @@
 # SZÉP Kártya Home Assistant component
 
-Custom component for [Home Assistant](https://homeassistant.io) that tracks the balance of a card.
+Custom component for [Home Assistant](https://homeassistant.io) that tracks your account's current balance
 
 The state of the sensor is the sum of all sub-balances, but each sub-balance is exposed as a property.
 
