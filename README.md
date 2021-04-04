@@ -1,5 +1,7 @@
 # OTP SZÉP Kártya Home Assistant component
 
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+
 Custom component for [Home Assistant](https://homeassistant.io) that tracks SZÉP Kártya account balance.
 
 The state of the sensor is the sum of all sub-balances, but each sub-balance is exposed as a property.
@@ -8,10 +10,11 @@ The state of the sensor is the sum of all sub-balances, but each sub-balance is 
 
 ## Installation
 
-1. Copy the folder `szep_kartya` to `custom_components` inside your Home Assistant config folder.
-2. Restart Home Assistant (this installs dependencies of the custom component)
-3. Add YAML config to `configuration.yaml` (see below)
-4. Restart Home Assistant again
+1. Install [HACS](https://hacs.xyz/)
+2. Add this as a custom repository to HACS (`https://github.com/ofalvai/home-assistant-szep-kartya`)
+3. Install from the integrations list
+4. Add YAML config to `configuration.yaml` (see below)
+5. Restart Home Assistant
 
 ## Configuration
 
@@ -28,7 +31,6 @@ sensor:
 `card_number`: The last 8 digits of the card number (after the `61013242` prefix). Make sure to represent the number as string to avoid removing zeroes from the beginning.
 
 `card_code`: "Telekód" (by default the last 3 digits of card number). Make sure to represent the number as string to avoid removing zeroes from the beginning.
-
 
 `name` (optional): Friendly name of the sensor
 
