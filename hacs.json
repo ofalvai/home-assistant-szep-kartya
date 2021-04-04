@@ -1,0 +1,7 @@
+{
+  "name": "OTP SZÉP Kártya",
+  "content_in_root": true,
+  "render_readme": true,
+  "country": "HU",
+  "domains": ["sensor"]
+}
