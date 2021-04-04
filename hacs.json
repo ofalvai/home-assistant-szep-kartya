@@ -1,7 +1,8 @@
 {
   "name": "OTP SZÉP Kártya",
-  "content_in_root": true,
+  "content_in_root": false,
   "render_readme": true,
   "country": "HU",
-  "domains": ["sensor"]
+  "domains": ["sensor"],
+  "iot_class": ["Cloud Polling"]
 }
