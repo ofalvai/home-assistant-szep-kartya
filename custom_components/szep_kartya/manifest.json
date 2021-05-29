@@ -1,7 +1,7 @@
 {
   "domain": "szep_kartya",
   "name": "SZÉP Kártya",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "documentation": "https://github.com/ofalvai/home-assistant-szep-kartya",
   "issue_tracker": "https://github.com/ofalvai/home-assistant-szep-kartya/issues",
   "dependencies": [],
