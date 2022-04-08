@@ -75,7 +75,7 @@ class SzepKartyaSensor(Entity):
         return sum([self.balance_szallas, self.balance_szabadido, self.balance_vendeglatas])
 
     @property
-    def device_state_attributes(self):
+    def extra_state_attributes(self):
         return {
             'Vendéglátás': f'{self.balance_vendeglatas} {DEFAULT_UNIT}',
             'Szabadidő': f'{self.balance_szabadido} {DEFAULT_UNIT}',
