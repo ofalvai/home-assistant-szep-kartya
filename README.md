@@ -1,8 +1,8 @@
 # OTP SZÉP Kártya Home Assistant component
 
-[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
 
-Custom component for [Home Assistant](https://homeassistant.io) that tracks SZÉP Kártya account balance.
+Custom component for [Home Assistant](https://home-assistant.io) that tracks SZÉP Kártya account balance.
 
 The state of the sensor is the sum of all sub-balances, but each sub-balance is exposed as a property.
 
