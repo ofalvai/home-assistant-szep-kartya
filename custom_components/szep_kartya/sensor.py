@@ -17,11 +17,8 @@ DOMAIN = 'szep_kartya'
 CONF_CARD_NUMBER = 'card_number'
 CONF_CARD_CODE = 'card_code'
 CONF_MAIN_BALANCE = 'main_balance'
-#CONF_BALANCE_VENDEGLATAS = 'vendeglatas'
-#CONF_BALANCE_SZABADIDO = 'szabadido'
-CONF_BALANCE_SZALLAS = 'szallas'
-#CONF_BALANCE_VALUES = [CONF_BALANCE_VENDEGLATAS, CONF_BALANCE_SZABADIDO, CONF_BALANCE_SZALLAS]
-CONF_BALANCE_VALUES = [CONF_BALANCE_SZALLAS]
+CONF_BALANCE = 'egyenleg'
+CONF_BALANCE_VALUES = [CONF_BALANCE]
 
 
 DEFAULT_NAME = 'SZÉP Kártya'
@@ -53,12 +50,9 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
 
 class SzepKartyaSensor(Entity):
-
     def __init__(self, card_number: int, card_code: int, main_balance: str, name: str):
         self._state = None
-        #self.balance_vendeglatas = None
-        #self.balance_szabadido = None
-        self.balance_szallas = None
+        self.balance = None
 
         self.card_number: int = card_number
         self.card_code: int = card_code
@@ -74,15 +68,12 @@ class SzepKartyaSensor(Entity):
 
     @property
     def state(self):
-        return sum([self.balance_szallas, self.balance_szabadido, self.balance_vendeglatas])
-        return sum([self.balance_szallas])
+        return self.balance
 
     @property
     def extra_state_attributes(self):
         return {
-            #'Vendéglátás': f'{self.balance_vendeglatas} {DEFAULT_UNIT}',
-            #'Szabadidő': f'{self.balance_szabadido} {DEFAULT_UNIT}',
-            'Szállás': f'{self.balance_szallas} {DEFAULT_UNIT}'
+            'Egyenleg': f'{self.balance} {DEFAULT_UNIT}'
         }
 
     @property
@@ -96,8 +87,7 @@ class SzepKartyaSensor(Entity):
     def update(self):
         self.scrape_tokens()
         self.fetch_balance()
-        #self._state = self.balance_vendeglatas
-        self._state = self.balance_szallas
+        self._state = self.balance
 
     def scrape_tokens(self):
         response_html = requests.get(URL_HTML)
@@ -118,15 +108,15 @@ class SzepKartyaSensor(Entity):
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
         response_api = requests.post(URL_API, headers=headers, data=request_body, cookies=cookies)
-
+        
         response_json = json.loads(response_api.text)
+        print(response_json)
         if response_json[0] == 'RC':
             _LOGGER.error('Captcha protection kicked in (too many requests)')
+        elif response_json[0] == 'HI':
+            _LOGGER.error('Wrong card number or card code')
         else:
-            #self.balance_vendeglatas = parse_balance(response_json[1]['szamla_osszeg7'])
-            #self.balance_szabadido = parse_balance(response_json[1]['szamla_osszeg8'])
-            self.balance_szallas = parse_balance(response_json[1]['szamla_osszeg9'])
-
+            self.balance = parse_balance(response_json[1]['szamla_osszeg9'])
 
 def parse_balance(input_string: str) -> int:
     if input_string.strip() == '':
