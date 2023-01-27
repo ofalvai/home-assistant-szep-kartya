@@ -110,7 +110,6 @@ class SzepKartyaSensor(Entity):
         response_api = requests.post(URL_API, headers=headers, data=request_body, cookies=cookies)
         
         response_json = json.loads(response_api.text)
-        print(response_json)
         if response_json[0] == 'RC':
             _LOGGER.error('Captcha protection kicked in (too many requests)')
         elif response_json[0] == 'HI':
